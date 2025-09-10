@@ -172,12 +172,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // DURATION
     const calendar_picker_1 = document.getElementById('DR-calendar-1');
     const calendar_picker_2 = document.getElementById('DR-calendar-2');
-    function setCalendarsToToday() {
+    function resetDurationCalendars() {
         const today = new Date();
-        calendar_picker_1.valueAsDate = today;
+        const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        calendar_picker_1.valueAsDate = startOfMonth;
         calendar_picker_2.valueAsDate = today;
     }
-    setCalendarsToToday();
+    resetDurationCalendars();
 
     // Update labels based on both selected dates
     function updateLabels() {
