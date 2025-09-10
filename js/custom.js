@@ -276,8 +276,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
-
 /**
  * Returns an object with dayOfYear, weekOfYear, month, year (last 2 digits), and date in day/month/year format.
  * All values are numbers (no leading/trailing zeros), date is a string.
