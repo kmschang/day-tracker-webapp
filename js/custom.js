@@ -56,6 +56,13 @@ document.addEventListener('DOMContentLoaded', function() {
     addCopyHandler('month-of-year-button', '#month-of-year');
     addCopyHandler('year-short-button', '#year-short');
 
+    const todayDayLabel = document.getElementById('T-day');
+    const todayWeekLabel = document.getElementById('T-week');
+    const todayMonthLabel = document.getElementById('T-month');
+    const todayYearLabel = document.getElementById('T-year');
+
+
+
     // TIME MACHINE
 
     const TM_calendar_picker_1 = document.getElementById('TM-calendar');
@@ -114,6 +121,13 @@ document.addEventListener('DOMContentLoaded', function() {
     addCopyHandler('TM-year-short-button', '#TM-year-short');
 
 
+    const timeMachineDayLabel = document.getElementById('TM-day');
+    const timeMachineWeekLabel = document.getElementById('TM-week');
+    const timeMachineMonthLabel = document.getElementById('TM-month');
+    const timeMachineYearLabel = document.getElementById('TM-year');
+
+
+
     // DURATION
     const calendar_picker_1 = document.getElementById('DR-calendar-1');
     const calendar_picker_2 = document.getElementById('DR-calendar-2');
@@ -149,6 +163,33 @@ document.addEventListener('DOMContentLoaded', function() {
         if (yearShortElem) {
             yearShortElem.textContent = info_2.years;
         }
+
+        const durationDayLabel = document.getElementById('DR-day');
+        const durationWeekLabel = document.getElementById('DR-week');
+        const durationMonthLabel = document.getElementById('DR-month');
+        const durationYearLabel = document.getElementById('DR-year');
+
+        if (info_2.days === 1) {
+            durationDayLabel.textContent = 'Day';
+        } else {
+            durationDayLabel.textContent = 'Days';
+        }
+        if (info_2.weeks === 1) {
+            durationWeekLabel.textContent = 'Week';
+        } else {
+            durationWeekLabel.textContent = 'Weeks';
+        }
+        if (info_2.months === 1) {
+            durationMonthLabel.textContent = 'Month';
+        } else {
+            durationMonthLabel.textContent = 'Months';
+        }
+        if (info_2.years === 1) {
+            durationYearLabel.textContent = 'Year';
+        } else {
+            durationYearLabel.textContent = 'Years';
+        }
+
     }
 
     // Calendar date change handler
@@ -191,7 +232,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 });
-// custom.js
+
+
+
 
 /**
  * Returns an object with dayOfYear, weekOfYear, month, year (last 2 digits), and date in day/month/year format.
