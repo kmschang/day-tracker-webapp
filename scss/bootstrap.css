@@ -13055,12 +13055,27 @@ textarea.form-control-lg {
   }
 }
 .app-page {
-  transition: transform 0.2s;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+#main-page {
+  opacity: 1;
+  transform: scale(1.05);
+  transition: transform 0.2s, opacity 0.2s;
 }
 
 .app-page:hover {
   transform: scale(1.05);
   z-index: 2;
+}
+
+.app-page-secondary {
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0.4;
+}
+
+.app-page-secondary:hover {
+  opacity: 1;
 }
 
 .copy-button {
