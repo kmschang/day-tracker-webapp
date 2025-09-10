@@ -1,4 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Opacity control for app pages
+    const mainPage = document.getElementById('main-page');
+    const secondaryPages = document.querySelectorAll('.app-page-secondary');
+
+    function setActivePage(activePage) {
+        if (mainPage) {
+            if (activePage === mainPage) {
+                mainPage.style.opacity = '1';
+                mainPage.style.transform = 'scale(1.05)';
+            } else {
+                mainPage.style.opacity = '0.4';
+                mainPage.style.transform = 'scale(1)';
+            }
+        }
+        secondaryPages.forEach(page => {
+            if (page === activePage) {
+                page.style.opacity = '1';
+                page.style.transform = 'scale(1.05)';
+            } else {
+                page.style.opacity = '0.4';
+                page.style.transform = 'scale(1)';
+            }
+        });
+    }
+
+    // Initial state: only main-page is active
+    setActivePage(mainPage);
+
+    secondaryPages.forEach(page => {
+        page.addEventListener('mouseenter', () => {
+            setActivePage(page);
+        });
+        page.addEventListener('mouseleave', () => {
+            setActivePage(mainPage);
+        });
+    });
+
+
     // TODAY
     const info = getDateInfo(new Date());
     const bigDayElem = document.getElementById('day-of-year-big');
