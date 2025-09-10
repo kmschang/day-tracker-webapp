@@ -13054,13 +13054,24 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-#testing {
-  background-color: blue;
+.app-page {
+  transition: transform 0.2s;
 }
 
-.testing {
-  color: red;
-  background-color: yellow;
+.app-page:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.copy-button {
+  transition: transform 0.2s;
+  background: #595b5C;
+}
+
+.copy-button:hover {
+  transform: scale(1.02);
+  z-index: 2;
+  background-color: #717475;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
