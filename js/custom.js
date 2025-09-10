@@ -56,29 +56,29 @@ document.addEventListener('DOMContentLoaded', function() {
     addCopyHandler('month-of-year-button', '#month-of-year');
     addCopyHandler('year-short-button', '#year-short');
 
-    const calendar_picker = document.getElementById('TM-calendar');
+    const calendar_picker = document.getElementById('DR-calendar');
     calendar_picker.valueAsDate = new Date();
 
     // Update labels based on selected date
     function updateLabels(selectedDate) {
         const info_2 = getDateDistanceInfo(new Date(), selectedDate);
-        const bigDayOfYearElem = document.getElementById('TM-day-of-year-big');
+        const bigDayOfYearElem = document.getElementById('DR-day-of-year-big');
         if (bigDayOfYearElem) {
             bigDayOfYearElem.textContent = info_2.days;
         }
-        const dayOfYearElem = document.getElementById('TM-day-of-year');
+        const dayOfYearElem = document.getElementById('DR-day-of-year');
         if (dayOfYearElem) {
             dayOfYearElem.textContent = info_2.days;
         }
-        const weekOfYearElem = document.getElementById('TM-week-of-year');
+        const weekOfYearElem = document.getElementById('DR-week-of-year');
         if (weekOfYearElem) {
             weekOfYearElem.textContent = info_2.weeks;
         }
-        const monthOfYearElem = document.getElementById('TM-month-of-year');
+        const monthOfYearElem = document.getElementById('DR-month-of-year');
         if (monthOfYearElem) {
             monthOfYearElem.textContent = info_2.months;
         }
-        const yearShortElem = document.getElementById('TM-year-short');
+        const yearShortElem = document.getElementById('DR-year-short');
         if (yearShortElem) {
             yearShortElem.textContent = info_2.years;
         }
@@ -104,12 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    addCopyHandler('TM-day-of-year-big-button', '#TM-day-of-year-big');
-    addCopyHandler('TM-today-button', '#today-date');
-    addCopyHandler('TM-day-of-year-button', '#TM-day-of-year');
-    addCopyHandler('TM-week-of-year-button', '#TM-week-of-year');
-    addCopyHandler('TM-month-of-year-button', '#TM-month-of-year');
-    addCopyHandler('TM-year-short-button', '#TM-year-short');
+    addCopyHandler('DR-day-of-year-big-button', '#DR-day-of-year-big');
+    addCopyHandler('DR-today-button', '#today-date');
+    addCopyHandler('DR-day-of-year-button', '#DR-day-of-year');
+    addCopyHandler('DR-week-of-year-button', '#DR-week-of-year');
+    addCopyHandler('DR-month-of-year-button', '#DR-month-of-year');
+    addCopyHandler('DR-year-short-button', '#DR-year-short');
 
 
 });
