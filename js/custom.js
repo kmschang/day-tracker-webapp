@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get date information
+    // TODAY
     const info = getDateInfo(new Date());
     const bigDayElem = document.getElementById('day-of-year-big');
     if (bigDayElem) {
@@ -56,6 +56,65 @@ document.addEventListener('DOMContentLoaded', function() {
     addCopyHandler('month-of-year-button', '#month-of-year');
     addCopyHandler('year-short-button', '#year-short');
 
+    // TIME MACHINE
+
+    const TM_calendar_picker_1 = document.getElementById('TM-calendar');
+
+    function setTMCalendarToToday() {
+        const today = new Date();
+        TM_calendar_picker_1.valueAsDate = today;
+    }
+    setTMCalendarToToday();
+
+    function updateTMLabels() {
+        const date1 = TM_calendar_picker_1.value ? new Date(TM_calendar_picker_1.value) : new Date();
+        const info_1 = getDateInfo(date1);
+        const TM_dayOfYearElem = document.getElementById('TM-day-of-year');
+        if (TM_dayOfYearElem) {
+            TM_dayOfYearElem.textContent = info_1.dayOfYear;
+        }
+        const TM_dayOfYearBigElem = document.getElementById('TM-day-of-year-big');
+        if (TM_dayOfYearBigElem) {
+            TM_dayOfYearBigElem.textContent = info_1.dayOfYear;
+        }
+        const TM_weekOfYearElem = document.getElementById('TM-week-of-year');
+        if (TM_weekOfYearElem) {
+            TM_weekOfYearElem.textContent = info_1.weekOfYear;
+        }
+        const TM_monthOfYearElem = document.getElementById('TM-month-of-year');
+        if (TM_monthOfYearElem) {
+            TM_monthOfYearElem.textContent = info_1.month;
+        }
+        const TM_yearShortElem = document.getElementById('TM-year-short');
+        if (TM_yearShortElem) {
+            TM_yearShortElem.textContent = info_1.year;
+        }
+    }
+
+
+    TM_calendar_picker_1.addEventListener('change', () => {
+        if (!TM_calendar_picker_1.value) {
+            TM_calendar_picker_1.valueAsDate = new Date();
+        }
+        updateTMLabels();
+    });
+
+    TM_calendar_picker_1.addEventListener('input', () => {
+        if (!TM_calendar_picker_1.value) {
+            TM_calendar_picker_1.valueAsDate = new Date();
+            updateTMLabels();
+        }
+    });
+
+    updateTMLabels();
+    addCopyHandler('TM-day-of-year-big-button', '#TM-day-of-year-big');
+    addCopyHandler('TM-day-of-year-button', '#TM-day-of-year');
+    addCopyHandler('TM-week-of-year-button', '#TM-week-of-year');
+    addCopyHandler('TM-month-of-year-button', '#TM-month-of-year');
+    addCopyHandler('TM-year-short-button', '#TM-year-short');
+
+
+    // DURATION
     const calendar_picker_1 = document.getElementById('DR-calendar-1');
     const calendar_picker_2 = document.getElementById('DR-calendar-2');
     function setCalendarsToToday() {
