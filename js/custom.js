@@ -26,21 +26,38 @@ document.addEventListener('DOMContentLoaded', function() {
     yearShortElem.textContent = info.year;
   }
 
-  // Clipboard copy functionality
-    const dayBig = document.getElementById('day-of-year-big-button');
-    if (dayBig) {
-        dayBig.addEventListener('click', function() {
-        const value = dayBig.textContent.trim();
+  // Clipboard copy functionality for all buttons
+  function addCopyHandler(buttonId, valueSelector) {
+    const button = document.getElementById(buttonId);
+    if (button) {
+      button.addEventListener('click', function() {
+        let valueElem;
+        if (valueSelector) {
+          valueElem = button.querySelector(valueSelector);
+        } else {
+          valueElem = button;
+        }
+        const value = valueElem ? valueElem.textContent.trim() : '';
         navigator.clipboard.writeText(value)
-            .then(() => {
-            // Optionally show feedback
+          .then(() => {
             console.log('Copied to clipboard:', value);
-            })
-            .catch(err => {
+          })
+          .catch(err => {
             console.error('Failed to copy:', err);
-            });
-        });
+          });
+      });
     }
+  }
+
+  addCopyHandler('day-of-year-big-button', '#day-of-year-big');
+  addCopyHandler('today-button', '#today-date');
+  addCopyHandler('day-of-year-button', '#day-of-year');
+  addCopyHandler('week-of-year-button', '#week-of-year');
+  addCopyHandler('month-of-year-button', '#month-of-year');
+  addCopyHandler('year-short-button', '#year-short');
+
+
+
 });
 // custom.js
 
