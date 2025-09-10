@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Get date information
   const info = getDateInfo(new Date());
-  const bigDayElem = document.querySelector('.app-page#main-page .copy-button #day-of-year-big');
+  const bigDayElem = document.getElementById('day-of-year-big');
   if (bigDayElem) {
     bigDayElem.textContent = info.dayOfYear;
   }
-  const todayDateElem = document.querySelector('.app-page#main-page .copy-button #today-date');
+  const todayDateElem = document.getElementById('today-date');
   if (todayDateElem) {
     todayDateElem.textContent = info.date;
   }
@@ -56,7 +56,51 @@ document.addEventListener('DOMContentLoaded', function() {
   addCopyHandler('month-of-year-button', '#month-of-year');
   addCopyHandler('year-short-button', '#year-short');
 
+    const calendar_picker = document.getElementById('TM-calendar');
+  calendar_picker.valueAsDate = new Date();
 
+  function updateLabels(selectedDate) {
+    const info_2 = getDateDistanceInfo(new Date(), selectedDate);
+    const bigDayOfYearElem = document.getElementById('TM-day-of-year-big');
+    if (bigDayOfYearElem) {
+      bigDayOfYearElem.textContent = info_2.days;
+    }
+    const dayOfYearElem = document.getElementById('TM-day-of-year');
+    if (dayOfYearElem) {
+      dayOfYearElem.textContent = info_2.days;
+    }
+    const weekOfYearElem = document.getElementById('TM-week-of-year');
+    if (weekOfYearElem) {
+      weekOfYearElem.textContent = info_2.weeks;
+    }
+    const monthOfYearElem = document.getElementById('TM-month-of-year');
+    if (monthOfYearElem) {
+      monthOfYearElem.textContent = info_2.months;
+    }
+    const yearShortElem = document.getElementById('TM-year-short');
+    if (yearShortElem) {
+      yearShortElem.textContent = info_2.years;
+    }
+  }
+
+  calendar_picker.addEventListener('change', (event) => {
+    let selectedDate = new Date(event.target.value);
+    if (isNaN(selectedDate)) {
+      // If cleared, reset to today
+      calendar_picker.valueAsDate = new Date();
+      selectedDate = new Date();
+    }
+    updateLabels(selectedDate);
+  });
+
+  calendar_picker.addEventListener('input', (event) => {
+    if (!calendar_picker.value) {
+      // If cleared, reset to today
+      calendar_picker.valueAsDate = new Date();
+      updateLabels(new Date());
+    }
+  });
+    
 
 });
 // custom.js
@@ -100,9 +144,45 @@ function getDateInfo(date) {
   };
 }
 
+
+/**
+ * Returns an object with dayOfYear, weekOfYear, month, year (last 2 digits), and date in month/day/year format
+ * for the distance between two dates (date2 - date1).
+ * All values are numbers (no leading/trailing zeros), date is a string.
+ */
+function getDateDistanceInfo(date1, date2) {
+  if (!(date1 instanceof Date)) date1 = new Date(date1);
+  if (!(date2 instanceof Date)) date2 = new Date(date2);
+
+  // Distance in days
+  const oneDay = 1000 * 60 * 60 * 24;
+  const diffDays = Math.abs(Math.floor((date2 - date1) / oneDay));
+
+  // Distance in weeks
+  const diffWeeks = Math.floor(diffDays / 7);
+
+  // Distance in months (approximate, not calendar months)
+  const diffMonths = Math.floor(diffDays / 30.44); // average month length
+
+  // Distance in years (approximate)
+  const diffYears = Math.floor(diffDays / 365.25);
+
+  return {
+    days: diffDays,
+    weeks: diffWeeks,
+    months: diffMonths,
+    years: diffYears
+  };
+}
+
+
 // Example usage:
 const info = getDateInfo(new Date());
 console.log(info);
+
+
+
+
 
 
 
