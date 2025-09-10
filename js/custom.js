@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Get date information
   const info = getDateInfo(new Date());
   const bigDayElem = document.querySelector('.app-page#main-page .copy-button #day-of-year-big');
   if (bigDayElem) {
@@ -24,6 +25,22 @@ document.addEventListener('DOMContentLoaded', function() {
   if (yearShortElem) {
     yearShortElem.textContent = info.year;
   }
+
+  // Clipboard copy functionality
+    const dayBig = document.getElementById('day-of-year-big-button');
+    if (dayBig) {
+        dayBig.addEventListener('click', function() {
+        const value = dayBig.textContent.trim();
+        navigator.clipboard.writeText(value)
+            .then(() => {
+            // Optionally show feedback
+            console.log('Copied to clipboard:', value);
+            })
+            .catch(err => {
+            console.error('Failed to copy:', err);
+            });
+        });
+    }
 });
 // custom.js
 

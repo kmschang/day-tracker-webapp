@@ -13074,4 +13074,10 @@ textarea.form-control-lg {
   background-color: #717475;
 }
 
+.unselectable {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
