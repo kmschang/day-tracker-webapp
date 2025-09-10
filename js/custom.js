@@ -205,13 +205,6 @@ function getDateDistanceInfo(date1, date2) {
 }
 
 
-// Example usage:
-const info = getDateInfo(new Date());
-console.log(info);
-
-
-
-
 
 
 
