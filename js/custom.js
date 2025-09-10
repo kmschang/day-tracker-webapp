@@ -56,12 +56,20 @@ document.addEventListener('DOMContentLoaded', function() {
     addCopyHandler('month-of-year-button', '#month-of-year');
     addCopyHandler('year-short-button', '#year-short');
 
-    const calendar_picker = document.getElementById('DR-calendar');
-    calendar_picker.valueAsDate = new Date();
+    const calendar_picker_1 = document.getElementById('DR-calendar-1');
+    const calendar_picker_2 = document.getElementById('DR-calendar-2');
+    function setCalendarsToToday() {
+        const today = new Date();
+        calendar_picker_1.valueAsDate = today;
+        calendar_picker_2.valueAsDate = today;
+    }
+    setCalendarsToToday();
 
-    // Update labels based on selected date
-    function updateLabels(selectedDate) {
-        const info_2 = getDateDistanceInfo(new Date(), selectedDate);
+    // Update labels based on both selected dates
+    function updateLabels() {
+        const date1 = calendar_picker_1.value ? new Date(calendar_picker_1.value) : new Date();
+        const date2 = calendar_picker_2.value ? new Date(calendar_picker_2.value) : new Date();
+        const info_2 = getDateDistanceInfo(date1, date2);
         const bigDayOfYearElem = document.getElementById('DR-day-of-year-big');
         if (bigDayOfYearElem) {
             bigDayOfYearElem.textContent = info_2.days;
@@ -85,24 +93,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Calendar date change handler
-    calendar_picker.addEventListener('change', (event) => {
-        let selectedDate = new Date(event.target.value);
-        if (isNaN(selectedDate)) {
-            // If cleared, reset to today
-            calendar_picker.valueAsDate = new Date();
-            selectedDate = new Date();
+    calendar_picker_1.addEventListener('change', () => {
+        if (!calendar_picker_1.value) {
+            calendar_picker_1.valueAsDate = new Date();
         }
-        updateLabels(selectedDate);
+        updateLabels();
+    });
+    calendar_picker_2.addEventListener('change', () => {
+        if (!calendar_picker_2.value) {
+            calendar_picker_2.valueAsDate = new Date();
+        }
+        updateLabels();
     });
 
     // Calendar clear handler
-    calendar_picker.addEventListener('input', (event) => {
-        if (!calendar_picker.value) {
-            // If cleared, reset to today
-            calendar_picker.valueAsDate = new Date();
-            updateLabels(new Date());
+    calendar_picker_1.addEventListener('input', () => {
+        if (!calendar_picker_1.value) {
+            calendar_picker_1.valueAsDate = new Date();
+            updateLabels();
         }
     });
+    calendar_picker_2.addEventListener('input', () => {
+        if (!calendar_picker_2.value) {
+            calendar_picker_2.valueAsDate = new Date();
+            updateLabels();
+        }
+    });
+
+    // On reload, set both to today and update labels
+    updateLabels();
 
     addCopyHandler('DR-day-of-year-big-button', '#DR-day-of-year-big');
     addCopyHandler('DR-today-button', '#today-date');
