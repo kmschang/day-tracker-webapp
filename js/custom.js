@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {    
     // Opacity control for app pages
     const mainPage = document.getElementById('main-page');
     const secondaryPages = document.querySelectorAll('.app-page-secondary');
@@ -113,6 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateTMLabels() {
         const date1 = TM_calendar_picker_1.value ? new Date(TM_calendar_picker_1.value) : new Date();
+        date1.setDate(date1.getDate() + 1);
+        date1.setHours(12,0,0,0);
         const info_1 = getDateInfo(date1);
         const TM_dayOfYearElem = document.getElementById('TM-day-of-year');
         if (TM_dayOfYearElem) {
@@ -343,7 +345,6 @@ function getDateDistanceInfo(date1, date2) {
     years: diffYears
   };
 }
-
 
 
 
