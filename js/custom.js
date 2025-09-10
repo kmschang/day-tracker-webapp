@@ -1,106 +1,109 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Get date information
-  const info = getDateInfo(new Date());
-  const bigDayElem = document.getElementById('day-of-year-big');
-  if (bigDayElem) {
-    bigDayElem.textContent = info.dayOfYear;
-  }
-  const todayDateElem = document.getElementById('today-date');
-  if (todayDateElem) {
-    todayDateElem.textContent = info.date;
-  }
-  const dayOfYearElem = document.getElementById('day-of-year');
-  if (dayOfYearElem) {
-    dayOfYearElem.textContent = info.dayOfYear;
-  }
-  const weekOfYearElem = document.getElementById('week-of-year');
-  if (weekOfYearElem) {
-    weekOfYearElem.textContent = info.weekOfYear;
-  }
-  const monthOfYearElem = document.getElementById('month-of-year');
-  if (monthOfYearElem) {
-    monthOfYearElem.textContent = info.month;
-  }
-  const yearShortElem = document.getElementById('year-short');
-  if (yearShortElem) {
-    yearShortElem.textContent = info.year;
-  }
-
-  // Clipboard copy functionality for all buttons
-  function addCopyHandler(buttonId, valueSelector) {
-    const button = document.getElementById(buttonId);
-    if (button) {
-      button.addEventListener('click', function() {
-        let valueElem;
-        if (valueSelector) {
-          valueElem = button.querySelector(valueSelector);
-        } else {
-          valueElem = button;
-        }
-        const value = valueElem ? valueElem.textContent.trim() : '';
-        navigator.clipboard.writeText(value)
-          .then(() => {
-            console.log('Copied to clipboard:', value);
-          })
-          .catch(err => {
-            console.error('Failed to copy:', err);
-          });
-      });
+    // Get date information
+    const info = getDateInfo(new Date());
+    const bigDayElem = document.getElementById('day-of-year-big');
+    if (bigDayElem) {
+        bigDayElem.textContent = info.dayOfYear;
     }
-  }
+    const todayDateElem = document.getElementById('today-date');
+    if (todayDateElem) {
+        todayDateElem.textContent = info.date;
+    }
+    const dayOfYearElem = document.getElementById('day-of-year');
+    if (dayOfYearElem) {
+        dayOfYearElem.textContent = info.dayOfYear;
+    }
+    const weekOfYearElem = document.getElementById('week-of-year');
+    if (weekOfYearElem) {
+        weekOfYearElem.textContent = info.weekOfYear;
+    }
+    const monthOfYearElem = document.getElementById('month-of-year');
+    if (monthOfYearElem) {
+        monthOfYearElem.textContent = info.month;
+    }
+    const yearShortElem = document.getElementById('year-short');
+    if (yearShortElem) {
+        yearShortElem.textContent = info.year;
+    }
 
-  addCopyHandler('day-of-year-big-button', '#day-of-year-big');
-  addCopyHandler('today-button', '#today-date');
-  addCopyHandler('day-of-year-button', '#day-of-year');
-  addCopyHandler('week-of-year-button', '#week-of-year');
-  addCopyHandler('month-of-year-button', '#month-of-year');
-  addCopyHandler('year-short-button', '#year-short');
+    // Clipboard copy functionality for all buttons
+    function addCopyHandler(buttonId, valueSelector) {
+        const button = document.getElementById(buttonId);
+        if (button) {
+            button.addEventListener('click', function() {
+                let valueElem;
+                if (valueSelector) {
+                    valueElem = button.querySelector(valueSelector);
+                } else {
+                    valueElem = button;
+                }
+                const value = valueElem ? valueElem.textContent.trim() : '';
+                navigator.clipboard.writeText(value)
+                .then(() => {
+                    console.log('Copied to clipboard:', value);
+                })
+                .catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+            });
+        }
+    }
+
+    addCopyHandler('day-of-year-big-button', '#day-of-year-big');
+    addCopyHandler('today-button', '#today-date');
+    addCopyHandler('day-of-year-button', '#day-of-year');
+    addCopyHandler('week-of-year-button', '#week-of-year');
+    addCopyHandler('month-of-year-button', '#month-of-year');
+    addCopyHandler('year-short-button', '#year-short');
 
     const calendar_picker = document.getElementById('TM-calendar');
-  calendar_picker.valueAsDate = new Date();
+    calendar_picker.valueAsDate = new Date();
 
-  function updateLabels(selectedDate) {
-    const info_2 = getDateDistanceInfo(new Date(), selectedDate);
-    const bigDayOfYearElem = document.getElementById('TM-day-of-year-big');
-    if (bigDayOfYearElem) {
-      bigDayOfYearElem.textContent = info_2.days;
+    // Update labels based on selected date
+    function updateLabels(selectedDate) {
+        const info_2 = getDateDistanceInfo(new Date(), selectedDate);
+        const bigDayOfYearElem = document.getElementById('TM-day-of-year-big');
+        if (bigDayOfYearElem) {
+            bigDayOfYearElem.textContent = info_2.days;
+        }
+        const dayOfYearElem = document.getElementById('TM-day-of-year');
+        if (dayOfYearElem) {
+            dayOfYearElem.textContent = info_2.days;
+        }
+        const weekOfYearElem = document.getElementById('TM-week-of-year');
+        if (weekOfYearElem) {
+            weekOfYearElem.textContent = info_2.weeks;
+        }
+        const monthOfYearElem = document.getElementById('TM-month-of-year');
+        if (monthOfYearElem) {
+            monthOfYearElem.textContent = info_2.months;
+        }
+        const yearShortElem = document.getElementById('TM-year-short');
+        if (yearShortElem) {
+            yearShortElem.textContent = info_2.years;
+        }
     }
-    const dayOfYearElem = document.getElementById('TM-day-of-year');
-    if (dayOfYearElem) {
-      dayOfYearElem.textContent = info_2.days;
-    }
-    const weekOfYearElem = document.getElementById('TM-week-of-year');
-    if (weekOfYearElem) {
-      weekOfYearElem.textContent = info_2.weeks;
-    }
-    const monthOfYearElem = document.getElementById('TM-month-of-year');
-    if (monthOfYearElem) {
-      monthOfYearElem.textContent = info_2.months;
-    }
-    const yearShortElem = document.getElementById('TM-year-short');
-    if (yearShortElem) {
-      yearShortElem.textContent = info_2.years;
-    }
-  }
 
-  calendar_picker.addEventListener('change', (event) => {
-    let selectedDate = new Date(event.target.value);
-    if (isNaN(selectedDate)) {
-      // If cleared, reset to today
-      calendar_picker.valueAsDate = new Date();
-      selectedDate = new Date();
-    }
-    updateLabels(selectedDate);
-  });
+    // Calendar date change handler
+    calendar_picker.addEventListener('change', (event) => {
+        let selectedDate = new Date(event.target.value);
+        if (isNaN(selectedDate)) {
+            // If cleared, reset to today
+            calendar_picker.valueAsDate = new Date();
+            selectedDate = new Date();
+        }
+        updateLabels(selectedDate);
+    });
 
-  calendar_picker.addEventListener('input', (event) => {
-    if (!calendar_picker.value) {
-      // If cleared, reset to today
-      calendar_picker.valueAsDate = new Date();
-      updateLabels(new Date());
-    }
-  });
-    
+    // Calendar clear handler
+    calendar_picker.addEventListener('input', (event) => {
+        if (!calendar_picker.value) {
+            // If cleared, reset to today
+            calendar_picker.valueAsDate = new Date();
+            updateLabels(new Date());
+        }
+    });
+
 
 });
 // custom.js
