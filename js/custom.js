@@ -89,7 +89,7 @@ function getDateInfo(date) {
 
   // Date in day/month/year format with leading zeros for day and month
   const pad = n => n < 10 ? '0' + n : n;
-  const formattedDate = `${pad(date.getDate())}/${pad(month)}/${year}`;
+  const formattedDate = `${pad(month)}/${pad(date.getDate())}/${year}`;
 
   return {
     dayOfYear,
