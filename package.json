@@ -1,0 +1,16 @@
+{
+  "name": "day-tracker-webapp",
+  "version": "1.0.0",
+  "description": "A web companion to my iOS app that tracks the day of the year, week number, and month details. Users can view past date info, calculate time between dates, and explore insights on days, months, and years in a clean, accessible format.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "sass": "^1.92.1"
+  }
+}

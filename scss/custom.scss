@@ -1,0 +1,39 @@
+.app-page {
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+#main-page {
+  opacity: 1;
+  transform: scale(1.05);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.app-page:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.app-page-secondary {
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0.4;
+}
+
+.app-page-secondary:hover {
+  opacity: 1;
+}
+
+.copy-button {
+    transition: transform 0.2s;
+    background: #595b5C;
+}
+.copy-button:hover {
+    transform: scale(1.02);
+    z-index: 2;
+    background-color: #717475;
+}
+
+.unselectable {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
