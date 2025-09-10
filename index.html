@@ -59,55 +59,53 @@
                 </div>
             </div>
             <div class="col-12 col-md-8 col-lg-4 mx-auto app-page">
-                <div class="bg-dark text-white p-4 rounded-5 text-center" style="height: 90vh; min-height: 750px;">
+                <div class="bg-dark text-white py-4 rounded-5 text-center" style="height: 90vh; min-height: 750px;">
                     <h3 class="mb-4">Duration</h3>
                     
                 </div>
             </div>
             <div class="col-12 col-md-8 col-lg-4 mx-auto app-page">
-                <div class="bg-dark text-white p-4 rounded-5 text-center" style="height: 90vh; min-height: 750px;">
-                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                        <h1 class="mb-4">Time Machine</h1>
-                        <div class="d-flex flex-column align-items-stretch h-100" style="gap: 4%;">
-                            <!-- 20% Full Width Box -->
-                            <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 20%;" id="DR-date-button">
+                <div class="bg-dark text-white py-4 rounded-5 text-center" style="height: 90vh; min-height: 750px;">
+                    <h3 class="mb-4">Time Machine</h3>
+                    <div class="d-flex flex-column align-items-stretch h-100" style="gap: 4%;">
+                        <!-- 20% Full Width Box -->
+                        <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 20%;" id="DR-date-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                                <h2 class="text-Sonnaz-Gray fw-bold">Date</h2>
+                                <input type="date" class="form-control my-3" id="DR-calendar" />
+                            </div>
+                        </div>
+                        <!-- 40% Full Width Box -->
+                        <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 40%;" id="DR-day-of-year-big-button">
+                            <h1 class="text-white fw-bold" style="font-size: 6rem;" id="DR-day-of-year-big">0</h1>
+                        </div>
+                        <!-- 10% Row: Two Half-Width Boxes -->
+                        <div class="d-flex w-100" style="height: 10%; gap: 4%;">
+                            <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-day-of-year-button">
                                 <div class="d-flex flex-column justify-content-center align-items-center w-100">
-                                    <h2 class="text-Sonnaz-Gray fw-bold">Date</h2>
-                                    <input type="date" class="form-control my-3" id="DR-calendar" />
+                                    <h4 class="text-Sonnaz-Gray fw-bold mb-0">Day</h4>
+                                    <h3 class="text-white fw-bold mb-0" id="DR-day-of-year">0</h3>
                                 </div>
                             </div>
-                            <!-- 40% Full Width Box -->
-                            <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 40%;" id="DR-day-of-year-big-button">
-                                <h1 class="text-white fw-bold" style="font-size: 6rem;" id="DR-day-of-year-big">0</h1>
-                            </div>
-                            <!-- 10% Row: Two Half-Width Boxes -->
-                            <div class="d-flex w-100" style="height: 10%; gap: 4%;">
-                                <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-day-of-year-button">
-                                    <div class="d-flex flex-column justify-content-center align-items-center w-100">
-                                        <h4 class="text-Sonnaz-Gray fw-bold mb-0">Day</h4>
-                                        <h3 class="text-white fw-bold mb-0" id="DR-day-of-year">0</h3>
-                                    </div>
-                                </div>
-                                <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-week-of-year-button">
+                            <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-week-of-year-button">
                                 <div class="d-flex flex-column justify-content-center align-items-center  w-100">
-                                        <h4 class="text-Sonnaz-Gray fw-bold mb-0">Week</h4>
-                                        <h3 class="text-white fw-bold mb-0" id="DR-week-of-year">0</h3>
-                                    </div>
+                                    <h4 class="text-Sonnaz-Gray fw-bold mb-0">Week</h4>
+                                    <h3 class="text-white fw-bold mb-0" id="DR-week-of-year">0</h3>
                                 </div>
                             </div>
-                            <!-- 10% Row: Two Half-Width Boxes -->
-                            <div class="d-flex w-100" style="height: 10%; gap: 4%;">
-                                <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-month-of-year-button">
+                        </div>
+                        <!-- 10% Row: Two Half-Width Boxes -->
+                        <div class="d-flex w-100" style="height: 10%; gap: 4%;">
+                            <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-month-of-year-button">
                                 <div class="d-flex flex-column justify-content-center align-items-center  w-100">
-                                        <h4 class="text-Sonnaz-Gray fw-bold mb-0">Month</h4>
-                                        <h3 class="text-white fw-bold mb-0" id="DR-month-of-year">0</h3>
-                                    </div>
+                                    <h4 class="text-Sonnaz-Gray fw-bold mb-0">Month</h4>
+                                    <h3 class="text-white fw-bold mb-0" id="DR-month-of-year">0</h3>
                                 </div>
-                                <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-year-short-button">
+                            </div>
+                            <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-year-short-button">
                                 <div class="d-flex flex-column justify-content-center align-items-center  w-100">
-                                        <h4 class="text-Sonnaz-Gray fw-bold mb-0">Year</h4>
-                                        <h3 class="text-white fw-bold mb-0" id="DR-year-short">0</h3>
-                                    </div>
+                                    <h4 class="text-Sonnaz-Gray fw-bold mb-0">Year</h4>
+                                    <h3 class="text-white fw-bold mb-0" id="DR-year-short">0</h3>
                                 </div>
                             </div>
                         </div>
