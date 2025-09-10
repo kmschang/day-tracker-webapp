@@ -104,6 +104,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    addCopyHandler('TM-day-of-year-big-button', '#TM-day-of-year-big');
+    addCopyHandler('TM-today-button', '#today-date');
+    addCopyHandler('TM-day-of-year-button', '#TM-day-of-year');
+    addCopyHandler('TM-week-of-year-button', '#TM-week-of-year');
+    addCopyHandler('TM-month-of-year-button', '#TM-month-of-year');
+    addCopyHandler('TM-year-short-button', '#TM-year-short');
+
 
 });
 // custom.js
