@@ -105,11 +105,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const TM_calendar_picker_1 = document.getElementById('TM-calendar');
 
-    function setTMCalendarToToday() {
+    function resetTMCalendar() {
         const today = new Date();
-        TM_calendar_picker_1.valueAsDate = today;
+        const firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        TM_calendar_picker_1.valueAsDate = firstOfMonth;
     }
-    setTMCalendarToToday();
+    resetTMCalendar();
 
     function updateTMLabels() {
         const date1 = TM_calendar_picker_1.value ? new Date(TM_calendar_picker_1.value) : new Date();
@@ -325,25 +326,42 @@ function getDateDistanceInfo(date1, date2) {
   if (!(date1 instanceof Date)) date1 = new Date(date1);
   if (!(date2 instanceof Date)) date2 = new Date(date2);
 
-  // Distance in days
-  const oneDay = 1000 * 60 * 60 * 24;
-  const diffDays = Math.abs(Math.floor((date2 - date1) / oneDay));
+    // Distance in days
+    const oneDay = 1000 * 60 * 60 * 24;
+    const diffDays = Math.abs(Math.floor((date2 - date1) / oneDay));
 
-  // Distance in weeks
-  const diffWeeks = Math.floor(diffDays / 7);
+    // Distance in weeks
+    const diffWeeks = Math.floor(diffDays / 7);
 
-  // Distance in months (approximate, not calendar months)
-  const diffMonths = Math.floor(diffDays / 30.44); // average month length
+    // Calendar-based months
+    let d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
+    let d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
+    if (d2 < d1) {
+        [d1, d2] = [d2, d1];
+    }
+    let months = (d2.getFullYear() - d1.getFullYear()) * 12 + (d2.getMonth() - d1.getMonth());
+    if (d2.getDate() < d1.getDate()) {
+        months--;
+    }
+    // If negative, set to 0
+    months = Math.max(0, months);
 
-  // Distance in years (approximate)
-  const diffYears = Math.floor(diffDays / 365.25);
+    // Calendar-based years
+    let years = d2.getFullYear() - d1.getFullYear();
+    if (
+        d2.getMonth() < d1.getMonth() ||
+        (d2.getMonth() === d1.getMonth() && d2.getDate() < d1.getDate())
+    ) {
+        years--;
+    }
+    years = Math.max(0, years);
 
-  return {
-    days: diffDays,
-    weeks: diffWeeks,
-    months: diffMonths,
-    years: diffYears
-  };
+    return {
+        days: diffDays,
+        weeks: diffWeeks,
+        months: months,
+        years: years
+    };
 }
 
 
