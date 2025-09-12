@@ -8,8 +8,9 @@
 </head>
 <body style="background: #1B1C1E">
 <?php
-include 'header.html';
-include 'index.html';
+include 'includes/header.html';
+include 'includes/index.html';
+include 'includes/footer.html';
 ?>
 </body>
 </html>
