@@ -4,37 +4,55 @@ document.addEventListener('DOMContentLoaded', function() {
     const secondaryPages = document.querySelectorAll('.app-page-secondary');
 
     function setActivePage(activePage) {
-        if (mainPage) {
-            if (activePage === mainPage) {
+        // Only apply effects if screen is wider than 768px
+        if (window.innerWidth >= 768) {
+            if (mainPage) {
+                if (activePage === mainPage) {
+                    mainPage.style.opacity = '1';
+                    mainPage.style.transform = 'scale(1.05)';
+                } else {
+                    mainPage.style.opacity = '0.4';
+                    mainPage.style.transform = 'scale(1)';
+                }
+            }
+            secondaryPages.forEach(page => {
+                if (page === activePage) {
+                    page.style.opacity = '1';
+                    page.style.transform = 'scale(1.05)';
+                } else {
+                    page.style.opacity = '0.4';
+                    page.style.transform = 'scale(1)';
+                }
+            });
+        } else {
+            // Reset styles for smaller screens
+            if (mainPage) {
                 mainPage.style.opacity = '1';
-                mainPage.style.transform = 'scale(1.05)';
-            } else {
-                mainPage.style.opacity = '0.4';
-                mainPage.style.transform = 'scale(1)';
+                mainPage.style.transform = 'none';
             }
-        }
-        secondaryPages.forEach(page => {
-            if (page === activePage) {
+            secondaryPages.forEach(page => {
                 page.style.opacity = '1';
-                page.style.transform = 'scale(1.05)';
-            } else {
-                page.style.opacity = '0.4';
-                page.style.transform = 'scale(1)';
-            }
+                page.style.transform = 'none';
+            });
+        }
+    }
+
+    // Initial state
+    setActivePage(mainPage);
+
+    // Add hover events only on larger screens
+    function addHoverEvents() {
+        secondaryPages.forEach(page => {
+            page.addEventListener('mouseenter', () => setActivePage(page));
+            page.addEventListener('mouseleave', () => setActivePage(mainPage));
         });
     }
 
-    // Initial state: only main-page is active
-    setActivePage(mainPage);
+    // Call once initially
+    addHoverEvents();
 
-    secondaryPages.forEach(page => {
-        page.addEventListener('mouseenter', () => {
-            setActivePage(page);
-        });
-        page.addEventListener('mouseleave', () => {
-            setActivePage(mainPage);
-        });
-    });
+    // Optional: update on window resize
+    window.addEventListener('resize', () => setActivePage(mainPage));
 
 
     // TODAY
