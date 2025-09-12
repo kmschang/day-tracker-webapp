@@ -83,3 +83,17 @@ console.log("Main JS is loaded!");
 ```
 
 ---
+
+## Testing Webpage
+
+1. Set up php server
+``` bash
+php -S localhost:8000
+```
+
+2. Go to website
+```
+http://localhost:8000/yourfile.php
+```
+
+---
