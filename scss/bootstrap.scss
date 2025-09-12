@@ -13,10 +13,12 @@ $enable-negative-margins: true;
 $custom-colors: (
         "Sonnaz-Red":#A43240,
         "Sonnaz-Gray":#1B1C1E,
+        "Sonnaz-Dark-Gray":#121314,
+        "Sonnaz-Black":#000000,
         "Sonnaz-Light-Gray":#242528,
         "Sonnaz-Lighter-Gray":#595b5C,
         "Sonnaz-White":#F5F5F5,
-
+        
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
