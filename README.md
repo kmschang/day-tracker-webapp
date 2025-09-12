@@ -67,7 +67,7 @@ npx sass --style=compressed scss/bootstrap.scss scss/bootstrap.css --watch
 - **Optional:** To stop deprecation errors and such
 ``` bash
 npx sass --quiet --silence-deprecation=import,global-builtin scss/bootstrap.scss scss/bootstrap.css --watch
-npx sass --style=compressed --quiet --silence-deprecation=import,global-builtin scss/bootstrap.scss scss/bootstrap.css --watch
+npx sass --style=compressed --quiet --silence-deprecation=import,global-builtin scss/bootstrap.scss scss/bootstrap.min.css --watch
 ```
 5. Confire `main.js` file
 ``` bash
