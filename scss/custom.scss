@@ -1,6 +1,4 @@
 #main-page {
-  opacity: 1;
-  transform: scale(1.05);
   transition: transform 0.2s, opacity 0.2s;
 }
 
@@ -8,40 +6,8 @@
   transition: transform 0.2s, opacity 0.2s;
 }
 
-.app-page:hover {
-  transform: scale(1.05);
-  z-index: 2;
-}
-
 .app-page-secondary {
   transition: transform 0.2s, opacity 0.2s;
-  opacity: 0.4;
-}
-
-.app-page-secondary:hover {
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
-
-  #main-page {
-    opacity: 1;
-    transform: none; /* no scaling */
-    transition: none; /* remove animations */
-  }
-
-  .app-page,
-  .app-page:hover {
-    transform: none;
-    z-index: auto;
-    transition: none;
-  }
-
-  .app-page-secondary,
-  .app-page-secondary:hover {
-    opacity: 1; /* no fade effect */
-    transition: none;
-  }
 }
 
 
@@ -64,4 +30,3 @@
 footer {
   clear: both;
 }
-
