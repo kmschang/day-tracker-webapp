@@ -54,32 +54,48 @@ document.addEventListener('DOMContentLoaded', function() {
     // Optional: update on window resize
     window.addEventListener('resize', () => setActivePage(mainPage));
 
+    
+    // --- Helper: normalize date from picker to local noon ---
+    function getNormalizedDate(input) {
+        if (!input.value) return null;
 
-    // TODAY
-    const info = getDateInfo(new Date());
-    const bigDayElem = document.getElementById('day-of-year-big');
-    if (bigDayElem) {
-        bigDayElem.textContent = info.dayOfYear;
+        // Parse yyyy-mm-dd string as local date
+        const [year, month, day] = input.value.split('-').map(Number);
+        const localDate = new Date(year, month - 1, day); // local midnight
+
+        // Set consistent time: noon
+        localDate.setHours(12, 0, 0, 0);
+
+        return localDate;
     }
-    const todayDateElem = document.getElementById('today-date');
-    if (todayDateElem) {
-        todayDateElem.textContent = info.date;
-    }
-    const dayOfYearElem = document.getElementById('day-of-year');
-    if (dayOfYearElem) {
-        dayOfYearElem.textContent = info.dayOfYear;
-    }
-    const weekOfYearElem = document.getElementById('week-of-year');
-    if (weekOfYearElem) {
-        weekOfYearElem.textContent = info.weekOfYear;
-    }
-    const monthOfYearElem = document.getElementById('month-of-year');
-    if (monthOfYearElem) {
-        monthOfYearElem.textContent = info.month;
-    }
-    const yearShortElem = document.getElementById('year-short');
-    if (yearShortElem) {
-        yearShortElem.textContent = info.year;
+
+    // --- TODAY ---
+    function updateTodayLabels() {
+        const info = getDateInfo(new Date());
+        const bigDayElem = document.getElementById('day-of-year-big');
+        if (bigDayElem) {
+            bigDayElem.textContent = info.dayOfYear;
+        }
+        const todayDateElem = document.getElementById('today-date');
+        if (todayDateElem) {
+            todayDateElem.textContent = info.date;
+        }
+        const dayOfYearElem = document.getElementById('day-of-year');
+        if (dayOfYearElem) {
+            dayOfYearElem.textContent = info.dayOfYear;
+        }
+        const weekOfYearElem = document.getElementById('week-of-year');
+        if (weekOfYearElem) {
+            weekOfYearElem.textContent = info.weekOfYear;
+        }
+        const monthOfYearElem = document.getElementById('month-of-year');
+        if (monthOfYearElem) {
+            monthOfYearElem.textContent = info.month;
+        }
+        const yearShortElem = document.getElementById('year-short');
+        if (yearShortElem) {
+            yearShortElem.textContent = info.year;
+        }
     }
 
     // Clipboard copy functionality for all buttons
@@ -112,184 +128,120 @@ document.addEventListener('DOMContentLoaded', function() {
     addCopyHandler('month-of-year-button', '#month-of-year');
     addCopyHandler('year-short-button', '#year-short');
 
-    const todayDayLabel = document.getElementById('T-day');
-    const todayWeekLabel = document.getElementById('T-week');
-    const todayMonthLabel = document.getElementById('T-month');
-    const todayYearLabel = document.getElementById('T-year');
-
-
-
-    // TIME MACHINE
-
+    // --- TIME MACHINE ---
     const TM_calendar_picker_1 = document.getElementById('TM-calendar');
 
     function resetTMCalendar() {
         const today = new Date();
         const firstOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        firstOfMonth.setHours(12,0,0,0); // normalize to noon
         TM_calendar_picker_1.valueAsDate = firstOfMonth;
     }
     resetTMCalendar();
 
     function updateTMLabels() {
-        const date1 = TM_calendar_picker_1.value ? new Date(TM_calendar_picker_1.value) : new Date();
-        date1.setDate(date1.getDate() + 1);
-        date1.setHours(12,0,0,0);
+        const date1 = getNormalizedDate(TM_calendar_picker_1) || getNormalizedDate(new Date());
         const info_1 = getDateInfo(date1);
+
         const TM_dayOfYearElem = document.getElementById('TM-day-of-year');
-        if (TM_dayOfYearElem) {
-            TM_dayOfYearElem.textContent = info_1.dayOfYear;
-        }
+        if (TM_dayOfYearElem) TM_dayOfYearElem.textContent = info_1.dayOfYear;
+
         const TM_dayOfYearBigElem = document.getElementById('TM-day-of-year-big');
-        if (TM_dayOfYearBigElem) {
-            TM_dayOfYearBigElem.textContent = info_1.dayOfYear;
-        }
+        if (TM_dayOfYearBigElem) TM_dayOfYearBigElem.textContent = info_1.dayOfYear;
+
         const TM_weekOfYearElem = document.getElementById('TM-week-of-year');
-        if (TM_weekOfYearElem) {
-            TM_weekOfYearElem.textContent = info_1.weekOfYear;
-        }
+        if (TM_weekOfYearElem) TM_weekOfYearElem.textContent = info_1.weekOfYear;
+
         const TM_monthOfYearElem = document.getElementById('TM-month-of-year');
-        if (TM_monthOfYearElem) {
-            TM_monthOfYearElem.textContent = info_1.month;
-        }
+        if (TM_monthOfYearElem) TM_monthOfYearElem.textContent = info_1.month;
+
         const TM_yearShortElem = document.getElementById('TM-year-short');
-        if (TM_yearShortElem) {
-            TM_yearShortElem.textContent = info_1.year;
-        }
+        if (TM_yearShortElem) TM_yearShortElem.textContent = info_1.year;
     }
 
-
+    // --- Add normalization to events ---
     TM_calendar_picker_1.addEventListener('change', () => {
         if (!TM_calendar_picker_1.value) {
             TM_calendar_picker_1.valueAsDate = new Date();
         }
         updateTMLabels();
     });
-
     TM_calendar_picker_1.addEventListener('input', () => {
         if (!TM_calendar_picker_1.value) {
             TM_calendar_picker_1.valueAsDate = new Date();
-            updateTMLabels();
         }
+        updateTMLabels();
     });
 
-    updateTMLabels();
     addCopyHandler('TM-day-of-year-big-button', '#TM-day-of-year-big');
     addCopyHandler('TM-day-of-year-button', '#TM-day-of-year');
     addCopyHandler('TM-week-of-year-button', '#TM-week-of-year');
     addCopyHandler('TM-month-of-year-button', '#TM-month-of-year');
     addCopyHandler('TM-year-short-button', '#TM-year-short');
 
-
-    const timeMachineDayLabel = document.getElementById('TM-day');
-    const timeMachineWeekLabel = document.getElementById('TM-week');
-    const timeMachineMonthLabel = document.getElementById('TM-month');
-    const timeMachineYearLabel = document.getElementById('TM-year');
-
-
-
-    // DURATION
+    // --- DURATION ---
     const calendar_picker_1 = document.getElementById('DR-calendar-1');
     const calendar_picker_2 = document.getElementById('DR-calendar-2');
+
     function resetDurationCalendars() {
         const today = new Date();
         const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        startOfMonth.setHours(12,0,0,0);
+        today.setHours(12,0,0,0);
+
         calendar_picker_1.valueAsDate = startOfMonth;
         calendar_picker_2.valueAsDate = today;
     }
     resetDurationCalendars();
 
-    // Update labels based on both selected dates
-    function updateLabels() {
-        const date1 = calendar_picker_1.value ? new Date(calendar_picker_1.value) : new Date();
-        const date2 = calendar_picker_2.value ? new Date(calendar_picker_2.value) : new Date();
+    function updateDRLabels() {
+        const date1 = getNormalizedDate(calendar_picker_1) || new Date();
+        const date2 = getNormalizedDate(calendar_picker_2) || new Date();
         const info_2 = getDateDistanceInfo(date1, date2);
-        const bigDayOfYearElem = document.getElementById('DR-day-of-year-big');
-        if (bigDayOfYearElem) {
-            bigDayOfYearElem.textContent = info_2.days;
-        }
-        const dayOfYearElem = document.getElementById('DR-day-of-year');
-        if (dayOfYearElem) {
-            dayOfYearElem.textContent = info_2.days;
-        }
-        const weekOfYearElem = document.getElementById('DR-week-of-year');
-        if (weekOfYearElem) {
-            weekOfYearElem.textContent = info_2.weeks;
-        }
-        const monthOfYearElem = document.getElementById('DR-month-of-year');
-        if (monthOfYearElem) {
-            monthOfYearElem.textContent = info_2.months;
-        }
-        const yearShortElem = document.getElementById('DR-year-short');
-        if (yearShortElem) {
-            yearShortElem.textContent = info_2.years;
-        }
 
+        const bigDayOfYearElem = document.getElementById('DR-day-of-year-big');
+        if (bigDayOfYearElem) bigDayOfYearElem.textContent = info_2.days;
+
+        const dayOfYearElem = document.getElementById('DR-day-of-year');
+        if (dayOfYearElem) dayOfYearElem.textContent = info_2.days;
+
+        const weekOfYearElem = document.getElementById('DR-week-of-year');
+        if (weekOfYearElem) weekOfYearElem.textContent = info_2.weeks;
+
+        const monthOfYearElem = document.getElementById('DR-month-of-year');
+        if (monthOfYearElem) monthOfYearElem.textContent = info_2.months;
+
+        const yearShortElem = document.getElementById('DR-year-short');
+        if (yearShortElem) yearShortElem.textContent = info_2.years;
+
+        // Labels like "Day" / "Days"
         const durationDayLabel = document.getElementById('DR-day');
         const durationWeekLabel = document.getElementById('DR-week');
         const durationMonthLabel = document.getElementById('DR-month');
         const durationYearLabel = document.getElementById('DR-year');
 
-        if (info_2.days === 1) {
-            durationDayLabel.textContent = 'Day';
-        } else {
-            durationDayLabel.textContent = 'Days';
-        }
-        if (info_2.weeks === 1) {
-            durationWeekLabel.textContent = 'Week';
-        } else {
-            durationWeekLabel.textContent = 'Weeks';
-        }
-        if (info_2.months === 1) {
-            durationMonthLabel.textContent = 'Month';
-        } else {
-            durationMonthLabel.textContent = 'Months';
-        }
-        if (info_2.years === 1) {
-            durationYearLabel.textContent = 'Year';
-        } else {
-            durationYearLabel.textContent = 'Years';
-        }
-
+        durationDayLabel.textContent = info_2.days === 1 ? 'Day' : 'Days';
+        durationWeekLabel.textContent = info_2.weeks === 1 ? 'Week' : 'Weeks';
+        durationMonthLabel.textContent = info_2.months === 1 ? 'Month' : 'Months';
+        durationYearLabel.textContent = info_2.years === 1 ? 'Year' : 'Years';
     }
 
-    // Calendar date change handler
-    calendar_picker_1.addEventListener('change', () => {
-        if (!calendar_picker_1.value) {
-            calendar_picker_1.valueAsDate = new Date();
-        }
-        updateLabels();
+    // Add normalized event handlers for duration pickers
+    [calendar_picker_1, calendar_picker_2].forEach(picker => {
+        picker.addEventListener('change', updateDRLabels);
+        picker.addEventListener('input', updateDRLabels);
     });
-    calendar_picker_2.addEventListener('change', () => {
-        if (!calendar_picker_2.value) {
-            calendar_picker_2.valueAsDate = new Date();
-        }
-        updateLabels();
-    });
-
-    // Calendar clear handler
-    calendar_picker_1.addEventListener('input', () => {
-        if (!calendar_picker_1.value) {
-            calendar_picker_1.valueAsDate = new Date();
-            updateLabels();
-        }
-    });
-    calendar_picker_2.addEventListener('input', () => {
-        if (!calendar_picker_2.value) {
-            calendar_picker_2.valueAsDate = new Date();
-            updateLabels();
-        }
-    });
-
-    // On reload, set both to today and update labels
-    updateLabels();
 
     addCopyHandler('DR-day-of-year-big-button', '#DR-day-of-year-big');
-    addCopyHandler('DR-today-button', '#today-date');
     addCopyHandler('DR-day-of-year-button', '#DR-day-of-year');
     addCopyHandler('DR-week-of-year-button', '#DR-week-of-year');
     addCopyHandler('DR-month-of-year-button', '#DR-month-of-year');
     addCopyHandler('DR-year-short-button', '#DR-year-short');
 
+    // On reload, set both to today and update labels
+    updateTodayLabels();
+    updateTMLabels();
+    updateDRLabels();
 
 });
 
