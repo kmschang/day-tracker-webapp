@@ -10,7 +10,7 @@
 <body style="background: #1B1C1E">
 <?php
 include 'includes/header.html';
-include 'includes/SonnazGroup_DayTrackerWebapp.html';
+include 'includes/dayTrackerWebapp.html';
 include 'includes/footer.html';
 ?>
 </body>
