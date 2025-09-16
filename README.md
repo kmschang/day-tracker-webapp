@@ -18,7 +18,7 @@ project-root/
 │   └── custom.scss             # Custom formatting
 │   └── bootstrap.scss        # Bootstrap formatting with changes
 │   └── bootstrap.css (generated)   # Complied will both files above
-│── scss/
+│── js/
 │   └── custom.js             # Custom functions
 │   └── main.js                 # All JS function together
 │── index.html
