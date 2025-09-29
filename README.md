@@ -8,8 +8,8 @@
   <img src="https://img.shields.io/github/contributors/kmschang/day-tracker-webapp?style=flat&logo=git&logoColor=white&color=0080ff" alt="GitHub Contributors">
 </p>
 <div align="center">
-  <img src="https://img.shields.io/badge/HTML-D25936.svg?style=flat&logo=Html&logoColor=white" alt="HTML Badge">
-  <img src="https://img.shields.io/badge/CSS-3271B3.svg?style=flat&logo=CSS&logoColor=white" alt="CSS Badge">
+  <img src="https://img.shields.io/badge/HTML-D25936.svg?style=flat&logo=html5&logoColor=white" alt="HTML Badge">
+  <img src="https://img.shields.io/badge/CSS-3271B3.svg?style=flat&logo=css&logoColor=white" alt="CSS Badge">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=JavaScript&logoColor=black" alt="JavaScript Badge">
   <img src="https://img.shields.io/badge/PHP-777BB4.svg?style=flat&logo=PHP&logoColor=white" alt="PHP Badge">
   <img src="https://img.shields.io/badge/Bootstrap-7952B3.svg?style=flat&logo=Bootstrap&logoColor=white" alt="Bootstrap Badge">
