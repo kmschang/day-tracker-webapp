@@ -1,5 +1,23 @@
-# day-tracker-webapp
-A web companion to my iOS app that tracks the day of the year, week number, and month details. Users can view past date info, calculate time between dates, and explore insights on days, months, and years in a clean, accessible format.
+<h1 align="center">day-tracker-webapp</h1>
+<p align="center">A web companion to my iOS app that tracks the day of the year, week number, and month details. Users can view past date info, calculate time between dates, and explore insights on days, months, and years in a clean, accessible format.</p>
+<p align="center">
+  <img src="https://img.shields.io/github/license/kmschang/day-tracker-webapp?style=flat&logo=git&logoColor=white&color=0080ff" alt="GitHub License">
+  <img src="https://img.shields.io/github/v/release/kmschang/day-tracker-webapp?style=flat&logo=git&logoColor=white&color=0080ff" alt="GitHub Release">
+  <img src="https://img.shields.io/github/commit-activity/t/kmschang/day-tracker-webapp?style=flat&logo=git&logoColor=white&color=0080ff" alt="GitHub Commit Activity">
+  <img src="https://img.shields.io/github/last-commit/kmschang/day-tracker-webapp?style=flat&logo=git&logoColor=white&color=0080ff" alt="GitHub Last Commit">
+  <img src="https://img.shields.io/github/contributors/kmschang/day-tracker-webapp?style=flat&logo=git&logoColor=white&color=0080ff" alt="GitHub Contributors">
+</p>
+<div align="center">
+  <img src="https://img.shields.io/badge/HTML-D25936.svg?style=flat&logo=Html&logoColor=white" alt="HTML Badge">
+  <img src="https://img.shields.io/badge/CSS-3271B3.svg?style=flat&logo=CSS&logoColor=white" alt="CSS Badge">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=JavaScript&logoColor=black" alt="JavaScript Badge">
+  <img src="https://img.shields.io/badge/PHP-777BB4.svg?style=flat&logo=PHP&logoColor=white" alt="PHP Badge">
+  <img src="https://img.shields.io/badge/Bootstrap-7952B3.svg?style=flat&logo=Bootstrap&logoColor=white" alt="Bootstrap Badge">
+  <img src="https://img.shields.io/badge/npm-CB3837.svg?style=flat&logo=npm&logoColor=white" alt="npm Badge">
+  <img src="https://img.shields.io/badge/Sass-CC6699.svg?style=flat&logo=Sass&logoColor=white" alt="sass Badge">
+  <img src="https://img.shields.io/badge/JSON-000000.svg?style=flat&logo=JSON&logoColor=white" alt="JSON Badge">
+  <img src="https://img.shields.io/badge/Markdown-000000.svg?style=flat&logo=Markdown&logoColor=white" alt="Markdown Badge">
+</div>
 
 ---
 
