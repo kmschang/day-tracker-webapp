@@ -1,17 +1,222 @@
----
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Day Tracker Webapp | Sonnaz Group</title>
     <link rel="icon" type="image/png" sizes="256x256" href="assets/favicon.png">
-    <link rel="stylesheet" href="scss/bootstrap.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="scss/bootstrap.min.css">
 </head>
-<body style="background: #1B1C1E">
-    {% include header.html %}
-    {% include dayTrackerWebapp.html %}
-    {% include footer.html %}
+<!-- HEADER -->
+<header>
+    <section id="header">
+        <nav class="navbar bg-Sonnaz-Dark-Gray navbar-expand-lg fixed-top unselectable" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://www.sonnazgroup.com">
+                    <img src="assets/SonnazGroup_Logo(Red)(Transparent).png" alt="Logo" width="50px" height="50px" class="d-inline-block align-text-top">
+                </a>
+                <div class="d-flex flex-grow-1"></div>
+                <span class="fw-bold mx-4" style="font-size:2rem; color:white;">Day Tracker Webapp</span>
+            </div>
+        </nav>
+    </section>
+</header>
+
+<!-- BODY/APP -->
+<body class="bg-Sonnaz-Gray unselectable py-5" style="min-height: 100vh;">
+<div class="container py-5">
+    <div class="row g-5 py-5">
+        <div class="col-12 col-md-8 col-lg-4 mx-auto" id="main-page">
+            <div class="bg-dark text-white py-4 rounded-5 text-center app-page mx-2" style="height: 80vh; min-height: 750px;">
+                <h3 class="mb-4">Day Tracker</h3>
+                <div class="d-flex flex-column align-items-stretch h-100" style="gap: 4%;">
+                    <!-- 40% Full Width Box -->
+                    <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 40%;" id="day-of-year-big-button">
+                        <h1 class="text-white fw-bold" style="font-size: 6rem;" id="day-of-year-big"></h1>
+                    </div>
+                    <!-- 20% Full Width Box -->
+                    <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 20%;" id="today-button">
+                        <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                            <h2 class="text-Sonnaz-Gray fw-bold" id="T-date">Today</h2>
+                            <h1 class="text-white fw-bold" style="font-size: 3rem;" id="today-date"></h1>
+                        </div>
+                    </div>
+                    <!-- 10% Row: Two Half-Width Boxes -->
+                    <div class="d-flex w-100" style="height: 10%; gap: 4%;">
+                        <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="day-of-year-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="T-day">Day</h4>
+                                <h3 class="text-white fw-bold mb-0" id="day-of-year"></h3>
+                            </div>
+                        </div>
+                        <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="week-of-year-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="T-week">Week</h4>
+                                <h3 class="text-white fw-bold mb-0" id="week-of-year"></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 10% Row: Two Half-Width Boxes -->
+                    <div class="d-flex w-100" style="height: 10%; gap: 4%;">
+                        <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="month-of-year-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="T-month">Month</h4>
+                                <h3 class="text-white fw-bold mb-0" id="month-of-year"></h3>
+                            </div>
+                        </div>
+                        <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="year-short-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="T-year">Year</h4>
+                                <h3 class="text-white fw-bold mb-0" id="year-short"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8 col-lg-4 mx-auto" id="time-machine-page">
+            <div class="bg-dark text-white py-4 rounded-5 text-center app-page app-page-secondary mx-2" style="height: 80vh; min-height: 750px;" id="time-machine-page-Z2">
+                <h3 class="mb-4">Time Machine</h3>
+                <div class="d-flex flex-column align-items-stretch h-100" style="gap: 4%;">
+                    <!-- 20% Full Width Box -->
+                    <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 20%;" id="TM-date-button">
+                        <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                            <h1 class="fw-bold text-white">Date</h1>
+                            <input type="date" class="form-control my-3" id="TM-calendar" />
+                        </div>
+                    </div>
+                    <!-- 40% Full Width Box -->
+                    <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 40%;" id="TM-day-of-year-big-button">
+                        <h1 class="text-white fw-bold" style="font-size: 6rem;" id="TM-day-of-year-big">0</h1>
+                    </div>
+                    <!-- 10% Row: Two Half-Width Boxes -->
+                    <div class="d-flex w-100" style="height: 10%; gap: 4%;">
+                        <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="TM-day-of-year-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="TM-day">Day</h4>
+                                <h3 class="text-white fw-bold mb-0" id="TM-day-of-year">0</h3>
+                            </div>
+                        </div>
+                        <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="TM-week-of-year-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="TM-week">Week</h4>
+                                <h3 class="text-white fw-bold mb-0" id="TM-week-of-year">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 10% Row: Two Half-Width Boxes -->
+                    <div class="d-flex w-100" style="height: 10%; gap: 4%;">
+                        <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="TM-month-of-year-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="TM-month">Month</h4>
+                                <h3 class="text-white fw-bold mb-0" id="TM-month-of-year">0</h3>
+                            </div>
+                        </div>
+                        <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="TM-year-short-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="TM-year">Year</h4>
+                                <h3 class="text-white fw-bold mb-0" id="TM-year-short">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8 col-lg-4 mx-auto" id="duration-page">
+            <div class="bg-dark text-white py-4 rounded-5 text-center app-page app-page-secondary mx-2" style="height: 80vh; min-height: 750px;" id="duration-page-Z2">
+                <h3 class="mb-4">Duration</h3>
+                <div class="d-flex flex-column align-items-stretch h-100" style="gap: 4%;">
+                    <!-- 20% Full Width Box -->
+                    <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 20%;" id="DR-date-button">
+                        <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                            <input type="date" class="form-control my-3" id="DR-calendar-1" />
+                            <input type="date" class="form-control my-3" id="DR-calendar-2" />
+                        </div>
+                    </div>
+                    <!-- 40% Full Width Box -->
+                    <div class="copy-button text-dark rounded-5 p-4 mx-4 d-flex justify-content-center align-items-center" style="height: 40%;" id="DR-day-of-year-big-button">
+                        <h1 class="text-white fw-bold" style="font-size: 6rem;" id="DR-day-of-year-big">0</h1>
+                    </div>
+                    <!-- 10% Row: Two Half-Width Boxes -->
+                    <div class="d-flex w-100" style="height: 10%; gap: 4%;">
+                        <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-day-of-year-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="DR-day">Day</h4>
+                                <h3 class="text-white fw-bold mb-0" id="DR-day-of-year">0</h3>
+                            </div>
+                        </div>
+                        <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-week-of-year-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="DR-week">Week</h4>
+                                <h3 class="text-white fw-bold mb-0" id="DR-week-of-year">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 10% Row: Two Half-Width Boxes -->
+                    <div class="d-flex w-100" style="height: 10%; gap: 4%;">
+                        <div class="copy-button text-dark rounded-5 p-4 ms-4 me-2 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-month-of-year-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="DR-month">Month</h4>
+                                <h3 class="text-white fw-bold mb-0" id="DR-month-of-year">0</h3>
+                            </div>
+                        </div>
+                        <div class="copy-button text-dark rounded-5 p-4 ms-2 me-4 d-flex justify-content-center align-items-center" style="width: 48%;" id="DR-year-short-button">
+                            <div class="d-flex flex-column justify-content-center align-items-center  w-100">
+                                <h4 class="text-Sonnaz-Gray fw-bold mb-0" id="DR-year">Year</h4>
+                                <h3 class="text-white fw-bold mb-0" id="DR-year-short">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="w-100 text-center">
+    <section id="footer" class="default-font bg-Sonnaz-Gray text-white pb-5">
+        <div style="height:100px"></div>
+        <div class="container-sm align-self-center text-center">
+            <div class="footer-divider row"></div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+                <div class="col py-4">
+                    <p class="pb-1"><strong>Support</strong></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/contact">Contact</a></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/FAQ">FAQ</a></p>
+                </div>
+                <div class="col py-4">
+                    <p class="pb-1"><strong>Products</strong></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/day-tracker">Day Tracker</a></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/quicker-tipper">Quicker Tipper</a></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/discount-calculator">Discount Calculator</a></p>
+                </div>
+                <div class="col py-4">
+                    <p class="pb-1"><strong>News</strong></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/releases">App Releases</a></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/roadmap">Feature Roadmaps</a></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/status">Status Board</a></p>
+                </div>
+                <div class="col py-4">
+                    <p class="pb-1"><strong>Company</strong></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/about-us">About Us</a></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/press">Press</a></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/privacy">Privacy Policy</a></p>
+                    <p><a class="footer-link"  target="_blank"href="https://www.sonnazgroup.com/terms">Terms and Conditions</a></p>
+                </div>
+            </div>
+            <div class="row pt-3">
+                <div class="row">
+                    <p class="default-font text-center" style="font-size: 130%; font-weight: bolder">Sonnaz Group</p>
+                </div>
+                <div>
+                    <p class="text-center" style="font-size: 80%">© 2024-2025 Sonnaz Group, LLC. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>
+
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
